@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">IvyModa</string>
+
+<!--    Bien-->
+    <string name="product_manager">QLSP_GD</string>
+    <string name="add_product">Thêm sản phẩm mới</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="delete">Xóa sản phẩm</string>
+    <string name="edit">Chỉnh sửa sản phẩm</string>
+    <string name="info">Xem thông tin chi tiết</string>
+    <string name="product_name">Tên sản phẩm</string>
+    <string name="product_price">Giá bán</string>
+    <string name="product_quantity">Số lượng</string>
+    <string name="product_category">Danh mục</string>
+    <string name="search_hint">Tìm kiếm sản phẩm...</string>
+    <string name="unclassified">Chưa phân loại</string>
+    <string name="delete_confirmation_title">Xác nhận xóa</string>
+    <string name="delete_confirmation_message">Bạn có chắc chắn muốn xóa sản phẩm \"%s\" không?</string>
+    <string name="product_detail_title">Chi tiết sản phẩm</string>
+    <string name="unknown_category">Chưa phân loại</string>
+    <string name="unknown_date">Chưa có thông tin</string>
+    <string name="edit_product_title">Chỉnh sửa sản phẩm</string>
+    <string name="add_product_title">Thêm sản phẩm mới</string>
+    <string name="change_image">Chọn ảnh</string>
+    <string name="cancel">HỦY</string>
+    <string name="save">LƯU</string>
+    <string name="product_name_hint">Nhập tên sản phẩm</string>
+    <string name="product_description_hint">Nhập mô tả sản phẩm</string>
+    <string name="price_hint">Nhập giá bán</string>
+    <string name="quantity_hint">Nhập số lượng</string>
+    <string name="required_field">*</string>
+    <string name="select_category">Chọn danh mục</string>
+    <string name="product_saved_success">Lưu sản phẩm thành công</string>
+    <string name="product_updated_success">Cập nhật sản phẩm thành công</string>
+    <string name="search_empty">Không tìm thấy sản phẩm nào với từ khóa: %s</string>
+    <string name="search_results">Tìm thấy %d sản phẩm</string>
+    <string name="show_all_products">Hiển thị tất cả sản phẩm</string>
+</resources>

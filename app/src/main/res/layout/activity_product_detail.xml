@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Ảnh sản phẩm -->
+        <ImageView
+            android:id="@+id/imgProductDetail"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder" />
+
+        <!-- Tên + Yêu thích + Chia sẻ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/tvTenSPDetail"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="ÁO SƠ MI LUA LAYERED BOW 17M9277"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/ivFavorite"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/btn_star_big_off"
+                android:layout_marginEnd="12dp"/>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_share"/>
+        </LinearLayout>
+
+        <!-- Giá -->
+        <TextView
+            android:id="@+id/tvGiaDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1.290.000đ"
+            android:textSize="24sp"
+            android:textColor="#E91E63"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"/>
+
+        <!-- Chọn màu -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Màu sắc"
+            android:textStyle="bold"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"/>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:padding="16dp">
+            <LinearLayout
+                android:id="@+id/layoutColors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+        <!-- Chọn size -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kích thước"
+            android:textStyle="bold"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"/>
+        <LinearLayout
+            android:id="@+id/layoutSizes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp"/>
+
+        <!-- Số lượng -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số lượng"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/btnMinus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_dash"
+                android:layout_marginStart="32dp"/>
+            <TextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginHorizontal="16dp"/>
+            <ImageView
+                android:id="@+id/btnPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_add"/>
+        </LinearLayout>
+
+        <!-- Nút MUA NGAY -->
+        <Button
+            android:id="@+id/btnMuaNgay"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="MUA NGAY"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#000000"
+            android:layout_margin="16dp"
+            android:elevation="8dp"/>
+    </LinearLayout>
+</ScrollView>
