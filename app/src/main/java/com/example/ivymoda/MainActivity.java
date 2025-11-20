@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tvSort = findViewById(R.id.tvSort);
         tvSort.setOnClickListener(v -> showSortDialog());
 
-        // === CHÈN DỮ LIỆU + TẢI ===
-        insertSampleData();
+        // Tải dữ liệu sản phẩm
+        loadSanPham();
     }
 
     // Biến để lưu trạng thái sắp xếp hiện tại
@@ -86,101 +86,6 @@ public class MainActivity extends AppCompatActivity {
             sanPhamList.addAll(list);
             runOnUiThread(() -> adapter.notifyDataSetChanged());
         });
-    }
-
-    private void insertSampleData() {
-        new Thread(() -> {
-            SanPhamDao spDao = db.sanPhamDao();
-            DanhMucDao dmDao = db.danhMucDao();
-            VaiTroDao vtDao = db.vaiTroDao();
-            TaiKhoanDao tkDao = db.taiKhoanDao();
-
-            // Thêm vai trò Admin và User (insert Admin trước để có maVaiTro = 1, User sau
-            // để có maVaiTro = 2)
-            if (vtDao.getAll().isEmpty()) {
-                VaiTro admin = new VaiTro();
-                admin.tenVaiTro = "Admin";
-                vtDao.insert(admin);
-
-                VaiTro user = new VaiTro();
-                user.tenVaiTro = "User";
-                vtDao.insert(user);
-            }
-
-            // Tạo tài khoản admin mặc định
-            if (tkDao.checkUsernameExist("admin") == null) {
-                TaiKhoan adminAccount = new TaiKhoan();
-                adminAccount.tenDangNhap = "admin";
-                adminAccount.matKhau = "admin123"; // Mật khẩu mặc định
-                adminAccount.hoTen = "Administrator";
-                adminAccount.email = "admin@ivymoda.com";
-                adminAccount.soDienThoai = "";
-                adminAccount.ngaySinh = null;
-                adminAccount.diaChi = "";
-                adminAccount.gioiTinh = "Nam";
-                adminAccount.maVaiTro = 1; // Vai trò Admin
-                adminAccount.ngayTao = new Date();
-                tkDao.registerUser(adminAccount);
-            }
-
-            if (dmDao.getAllCategories().isEmpty()) {
-                DanhMuc dm1 = new DanhMuc();
-                dm1.tenDanhMuc = "Áo";
-                DanhMuc dm2 = new DanhMuc();
-                dm2.tenDanhMuc = "Quần";
-                DanhMuc dm3 = new DanhMuc();
-                dm3.tenDanhMuc = "Váy";
-                dmDao.insertCategory(dm1);
-                dmDao.insertCategory(dm2);
-                dmDao.insertCategory(dm3);
-            }
-
-            if (spDao.getAll().isEmpty()) {
-                List<SanPham> samples = new ArrayList<>();
-
-                SanPham sp1 = new SanPham();
-                sp1.hinhAnh = R.drawable.ao1;
-                sp1.tenSanPham = "Áo Sơ Mi Trắng Ivy";
-                sp1.moTa = "Chất cotton thoáng mát";
-                sp1.giaBan = 890000.0;
-                sp1.soLuong = 50;
-                sp1.mauSac = "Trắng, Đen";
-                sp1.size = "S, M, L";
-                sp1.maDanhMuc = 1;
-                sp1.ngayTao = new Date();
-                samples.add(sp1);
-
-                SanPham sp2 = new SanPham();
-                sp2.hinhAnh = R.drawable.vay1;
-                sp2.tenSanPham = "Váy Xòe Hoa Nhí";
-                sp2.moTa = "Thiết kế trẻ trung";
-                sp2.giaBan = 1290000.0;
-                sp2.soLuong = 30;
-                sp2.mauSac = "Hồng,Vàng";
-                sp2.size = "S, M, L";
-                sp2.maDanhMuc = 3;
-                sp2.ngayTao = new Date();
-                samples.add(sp2);
-
-                SanPham sp3 = new SanPham();
-                sp3.hinhAnh = R.drawable.quan1;
-                sp3.tenSanPham = "Quần Jeans Ống Rộng";
-                sp3.moTa = "Phong cách Hàn Quốc";
-                sp3.giaBan = 990000.0;
-                sp3.soLuong = 40;
-                sp3.mauSac = "Xanh, Xám";
-                sp3.size = "28, 29, 30";
-                sp3.maDanhMuc = 2;
-                sp3.ngayTao = new Date();
-                samples.add(sp3);
-
-                for (SanPham sp : samples) {
-                    spDao.insert(sp);
-                }
-            }
-
-            runOnUiThread(this::loadSanPham);
-        }).start();
     }
 
     // ================== BỘ LỌC ==================
