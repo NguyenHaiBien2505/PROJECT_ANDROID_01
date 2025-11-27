@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/update_mni"
+        android:title="Sửa"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/delete_mni"
+        android:title="Xóa"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="never" />
+
+</menu>

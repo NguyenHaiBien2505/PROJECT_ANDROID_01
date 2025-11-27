@@ -44,7 +44,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         SanPham sp = list.get(i);
         h.tvTen.setText(sp.tenSanPham);
         h.tvGia.setText(formatPrice(sp.giaBan));
-        h.imgSanPham.setImageResource(sp.hinhAnh != 0 ? sp.hinhAnh : R.drawable.placeholder);
+
+        // SỬA LỖI HIỂN THỊ ẢNH
+        if (sp.hinhAnh != 0) {
+            h.imgSanPham.setImageResource(sp.hinhAnh);
+        } else {
+            h.imgSanPham.setImageResource(R.drawable.placeholder);
+        }
+
         h.tvNewTag.setVisibility(sp.ngayTao.getTime() > System.currentTimeMillis() - 7L * 24 * 60 * 60 * 1000 ? View.VISIBLE : View.GONE);
 
         // XỬ LÝ NHIỀU MÀU

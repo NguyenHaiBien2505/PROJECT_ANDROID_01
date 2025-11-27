@@ -11,4 +11,7 @@ public interface VaiTroDao {
     @Insert void insert(VaiTro vt);
     @Update void update(VaiTro vt);
     @Delete void delete(VaiTro vt);
+    // Lấy vai trò theo ID
+    @Query("SELECT * FROM vaitro WHERE maVaiTro = :id LIMIT 1")
+    VaiTro getById(int id);
 }

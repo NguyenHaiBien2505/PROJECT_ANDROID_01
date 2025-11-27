@@ -1,11 +1,11 @@
 package com.example.ivymoda.Activity;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -32,45 +32,40 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
 
         // Nhận sản phẩm từ Intent
-        sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
+        sanPham = (SanPham) getIntent().getSerializableExtra("PRODUCT"); // Sửa key cho nhất quán
+        if (sanPham == null) {
+            sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
+        }
+        
         if (sanPham == null) {
             Toast.makeText(this, "Không tải được sản phẩm", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
-        initViews();
-        loadData(); // Bây giờ đã có hàm này rồi
-    }
-
-    private void initViews() {
-        // Không cần khai báo lại ở đây nữa, vì loadData() sẽ làm hết
+        loadData();
     }
 
     // HÀM CHÍNH – TẢI TOÀN BỘ DỮ LIỆU VÀO GIAO DIỆN
     private void loadData() {
-        // Ảnh + Tên + Giá
         ImageView img = findViewById(R.id.imgProductDetail);
         TextView tvTen = findViewById(R.id.tvTenSPDetail);
         TextView tvGia = findViewById(R.id.tvGiaDetail);
 
-        img.setImageResource(sanPham.hinhAnh != 0 ? sanPham.hinhAnh : R.drawable.placeholder);
+        // Hiển thị ảnh từ resource ID
+        if (sanPham.getHinhAnh() != 0) {
+            img.setImageResource(sanPham.getHinhAnh());
+        } else {
+            img.setImageResource(R.drawable.placeholder);
+        }
+
         tvTen.setText(sanPham.tenSanPham.toUpperCase(Locale.getDefault()));
         tvGia.setText(formatPrice(sanPham.giaBan));
 
-        // Tải màu sắc
         loadColors();
-
-        // Tải size
         loadSizes();
-
-        // Thiết lập số lượng +/-
         setupQuantityButtons();
-
-        // Nút MUA NGAY
         setupMuaNgayButton();
-
-        // Yêu thích
         setupFavoriteButton();
     }
 
@@ -78,7 +73,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         LinearLayout layoutColors = findViewById(R.id.layoutColors);
         layoutColors.removeAllViews();
 
-        // Giả sử bạn lưu màu trong field mauSac kiểu: "Trắng, Đen, Nâu"
         String[] colors = sanPham.mauSac != null ? sanPham.mauSac.split(",\\s*") : new String[]{"Trắng", "Đen"};
 
         for (String colorName : colors) {
@@ -119,7 +113,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         ImageView tick = new ImageView(this);
         tick.setImageResource(R.drawable.ic_check_white_24);
         tick.setVisibility(View.GONE);
-        tick.setId(View.generateViewId()); // Dùng cách này → không cần ids.xml
+        tick.setId(View.generateViewId());
         FrameLayout.LayoutParams tickParams = new FrameLayout.LayoutParams(size / 2, size / 2);
         tickParams.gravity = Gravity.CENTER;
         tick.setLayoutParams(tickParams);
@@ -133,11 +127,11 @@ public class ProductDetailActivity extends AppCompatActivity {
             LinearLayout parent = findViewById(R.id.layoutColors);
             for (int i = 0; i < parent.getChildCount(); i++) {
                 View item = parent.getChildAt(i);
-                ImageView otherTick = item.findViewWithTag("tick_tag"); // dùng tag thay vì id
+                ImageView otherTick = item.findViewWithTag("tick_tag");
                 if (otherTick != null) otherTick.setVisibility(View.GONE);
             }
 
-            tick.setTag("tick_tag"); // đánh dấu đây là tick hiện tại
+            tick.setTag("tick_tag");
             tick.setVisibility(View.VISIBLE);
         });
 
@@ -213,43 +207,31 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
     }
 
-    // Helper: chuyển tên màu → mã màu
     private int getColorValue(String name) {
         switch (name.toLowerCase()) {
             case "trắng":
                 return Color.parseColor("#FFFFFF");
-
             case "đen":
                 return Color.parseColor("#000000");
-
             case "xanh":
                 return Color.parseColor("#4CAF50");
-
             case "hồng":
                 return Color.parseColor("#FF4081");
-
             case "vàng":
                 return Color.parseColor("#FFC107");
-
             case "xám":
                 return Color.parseColor("#9E9E9E");
-
             case "đỏ":
                 return Color.parseColor("#F44336");
-
             case "tím":
                 return Color.parseColor("#9C27B0");
-
             case "nâu":
                 return Color.parseColor("#795548");
-
             case "cam":
                 return Color.parseColor("#FF5722");
-
             default:
-                return Color.parseColor("#DDDDDD"); // màu mặc định
+                return Color.parseColor("#DDDDDD");
         }
-
     }
 
     private String formatPrice(double price) {

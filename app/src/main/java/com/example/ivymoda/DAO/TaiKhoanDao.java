@@ -20,6 +20,11 @@ public interface TaiKhoanDao {
     @Insert
     void registerUser(TaiKhoan tk);
 
+    @Query("SELECT * FROM taikhoan WHERE maTaiKhoan = :id LIMIT 1")
+    TaiKhoan getById(int id);
+
+    @Query("SELECT * FROM taikhoan WHERE email = :email LIMIT 1")
+    TaiKhoan getByEmail(String email);
     @Query("SELECT * FROM taikhoan WHERE tenDangNhap = :uName AND matKhau = :pass LIMIT 1")
     TaiKhoan checkLogin(String uName, String pass);
 

@@ -1,6 +1,5 @@
 package com.example.ivymoda.Adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,41 +52,36 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SanPham product = productList.get(position);
-        
-        // Hiển thị ảnh
-        if (product.hinhAnh != 0) {
-            holder.ivProductImage.setImageResource(product.hinhAnh);
+
+        // Hiển thị ảnh từ resource ID
+        if (product.getHinhAnh() != 0) {
+            holder.ivProductImage.setImageResource(product.getHinhAnh());
         } else {
             holder.ivProductImage.setImageResource(R.drawable.placeholder);
         }
-        
-        // Hiển thị tên sản phẩm
+
         holder.tvProductName.setText(product.tenSanPham);
-        
-        // Format và hiển thị giá
+
         NumberFormat formatter = NumberFormat.getNumberInstance(new Locale("vi", "VN"));
         holder.tvProductPrice.setText(formatter.format(product.giaBan) + " VNĐ");
-        
-        // Hiển thị số lượng
+
         holder.tvProductQuantity.setText("Số lượng: " + product.soLuong);
-        
-        // Hiển thị danh mục
+
         String categoryName = getCategoryName(product.maDanhMuc);
         holder.tvProductCategory.setText(categoryName);
-        
-        // Xử lý click các nút
+
         holder.btnDelete.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onDeleteClick(product);
             }
         });
-        
+
         holder.btnEdit.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEditClick(product);
             }
         });
-        
+
         holder.btnInfo.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onInfoClick(product);
@@ -139,4 +133,3 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
         }
     }
 }
-

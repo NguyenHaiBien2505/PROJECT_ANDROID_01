@@ -1,4 +1,3 @@
-// SanPham.java (ĐÃ SỬA)
 package com.example.ivymoda.Entity;
 
 import androidx.room.*;
@@ -16,14 +15,14 @@ public class SanPham implements Serializable {
     public int maSanPham;
 
     @ColumnInfo(name = "hinhAnh")
-    public int hinhAnh; // Resource ID ảnh
+    public int hinhAnh; // Resource ID của ảnh. Lưu ý: chỉ dùng cho ảnh có sẵn trong project.
 
     public String tenSanPham;
     public String moTa;
     public double giaBan;
     public int soLuong;
-    public String mauSac;  // ĐÃ SỬA: string → String
-    public String size;    // ĐÃ SỬA: string → String
+    public String mauSac;
+    public String size;
 
     @ColumnInfo(index = true)
     public int maDanhMuc;

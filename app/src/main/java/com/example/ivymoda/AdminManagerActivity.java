@@ -15,6 +15,7 @@ public class AdminManagerActivity extends AppCompatActivity {
 
     private TextView tvQuanLySanPham;
     private TextView tvQuanLyDanhMuc;
+    private TextView tvQuanLyTaiKhoan;
     private ImageView iconUser;
 
     @Override
@@ -25,6 +26,7 @@ public class AdminManagerActivity extends AppCompatActivity {
         iconUser = findViewById(R.id.iconUser);
         tvQuanLySanPham = findViewById(R.id.tvQuanLySanPham);
         tvQuanLyDanhMuc = findViewById(R.id.tvQuanLyDanhMuc);
+        tvQuanLyTaiKhoan = findViewById(R.id.tvQuanLyTaiKhoan);
 
         // Xử lý click icon user
         iconUser.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,14 @@ public class AdminManagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openProductManagement();
+            }
+        });
+
+        // Xử lý click Quản lý tài khoản
+        tvQuanLyTaiKhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openUserManager();
             }
         });
     }
@@ -86,6 +96,12 @@ public class AdminManagerActivity extends AppCompatActivity {
     private void openProductManagement() {
         // Mở màn hình quản lý sản phẩm
         Intent intent = new Intent(AdminManagerActivity.this, ProductManagementActivity.class);
+        startActivity(intent);
+    }
+
+    private void openUserManager() {
+        // Mở màn hình quản lý tài khoản
+        Intent intent = new Intent(AdminManagerActivity.this, UserManagerActivity.class);
         startActivity(intent);
     }
 }

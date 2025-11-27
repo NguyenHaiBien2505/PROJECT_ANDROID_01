@@ -70,6 +70,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         // Hiển thị ảnh sản phẩm
         if (product.getHinhAnh() != 0) {
             ivProductImage.setImageResource(product.getHinhAnh());
+        } else {
+            ivProductImage.setImageResource(R.drawable.placeholder);
         }
 
         // Hiển thị thông tin sản phẩm
